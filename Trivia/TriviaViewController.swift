@@ -21,6 +21,7 @@ class TriviaViewController: UIViewController {
   private var questions = [CurrentTriviaQuestion]()
   private var currQuestionIndex = 0
   private var numCorrectQuestions = 0
+  private var isBooleanAnswer = false
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -28,68 +29,57 @@ class TriviaViewController: UIViewController {
     questionContainerView.layer.cornerRadius = 8.0
     // TODO: FETCH TRIVIA QUESTIONS HERE
       TriviaQuestionService.fetchTriviaQuestions(completion: { (triviaQuestions) in
-          self.configureCurrentQuestion(with: triviaQuestions[self.currQuestionIndex])
           self.questions = triviaQuestions
+          self.updateQuestion(withQuestionIndex: self.currQuestionIndex)
       })
   }
-    
-    private func configureCurrentQuestion(with currentQuestion: CurrentTriviaQuestion) {
-        questionLabel.text = currentQuestion.question
-        categoryLabel.text = currentQuestion.category
-        let answers = ([currentQuestion.correctAnswer] + currentQuestion.incorrectAnswers).shuffled()
-        if answers.count > 0 {
-          answerButton0.setTitle(answers[0], for: .normal)
-        }
-        if answers.count > 1 {
-          answerButton1.setTitle(answers[1], for: .normal)
-          answerButton1.isHidden = false
-        }
-        if answers.count > 2 {
-          answerButton2.setTitle(answers[2], for: .normal)
-          answerButton2.isHidden = false
-        }
-        if answers.count > 3 {
-          answerButton3.setTitle(answers[3], for: .normal)
-          answerButton3.isHidden = false
-        }
-    }
   
-  private func updateQuestion(withQuestionIndex questionIndex: Int) {
+    private func updateQuestion(withQuestionIndex questionIndex: Int) {
     currentQuestionNumberLabel.text = "Question: \(questionIndex + 1)/\(questions.count)"
       let question = questions[questionIndex]
       questionLabel.text = question.question
       categoryLabel.text = question.category
     let answers = ([question.correctAnswer] + question.incorrectAnswers).shuffled()
-    if answers.count > 0 {
-      answerButton0.setTitle(answers[0], for: .normal)
-    }
-    if answers.count > 1 {
-      answerButton1.setTitle(answers[1], for: .normal)
-      answerButton1.isHidden = false
-    }
-    if answers.count > 2 {
-      answerButton2.setTitle(answers[2], for: .normal)
-      answerButton2.isHidden = false
-    }
-    if answers.count > 3 {
-      answerButton3.setTitle(answers[3], for: .normal)
-      answerButton3.isHidden = false
-    }
+        if question.type == "boolean" {
+            answerButton0.setTitle(answers[0], for: .normal)
+            answerButton0.isHidden = false
+            answerButton1.setTitle(answers[1], for: .normal)
+            answerButton1.isHidden = false
+            answerButton2.isHidden = true
+            answerButton3.isHidden = true
+        }
+        else {
+            if answers.count > 0 {
+                answerButton0.setTitle(answers[0], for: .normal)
+            }
+            if answers.count > 1 {
+                answerButton1.setTitle(answers[1], for: .normal)
+                answerButton1.isHidden = false
+            }
+            if answers.count > 2 {
+                answerButton2.setTitle(answers[2], for: .normal)
+                answerButton2.isHidden = false
+            }
+            if answers.count > 3 {
+                answerButton3.setTitle(answers[3], for: .normal)
+                answerButton3.isHidden = false
+            }
+        }
   }
-  
+
   private func updateToNextQuestion(answer: String) {
-    print(questions)
     if isCorrectAnswer(answer) {
       numCorrectQuestions += 1
     }
     currQuestionIndex += 1
-    guard currQuestionIndex < questions.count else {
-      showFinalScore()
-      return
-    }
-    updateQuestion(withQuestionIndex: currQuestionIndex)
+      guard currQuestionIndex < questions.count else {
+        showFinalScore()
+        return
+      }
+      let question = questions[currQuestionIndex]
+      updateQuestion(withQuestionIndex: currQuestionIndex)
   }
-  
+
   private func isCorrectAnswer(_ answer: String) -> Bool {
     return answer == questions[currQuestionIndex].correctAnswer
   }
@@ -101,7 +91,7 @@ class TriviaViewController: UIViewController {
     let resetAction = UIAlertAction(title: "Restart", style: .default) { [unowned self] _ in
       currQuestionIndex = 0
       numCorrectQuestions = 0
-      updateQuestion(withQuestionIndex: currQuestionIndex)
+        updateQuestion(withQuestionIndex: currQuestionIndex)
     }
     alertController.addAction(resetAction)
     present(alertController, animated: true, completion: nil)

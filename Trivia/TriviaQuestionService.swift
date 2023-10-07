@@ -10,7 +10,7 @@ import Foundation
 class TriviaQuestionService {
     // closure receives a TriviaQuestions data model
     static func fetchTriviaQuestions(                                 completion: (([CurrentTriviaQuestion]) -> Void)? = nil) {
-        let url = URL(string: "https://opentdb.com/api.php?amount=10")
+        let url = URL(string: "https://opentdb.com/api.php?amount=8")
         // create a data task & pass in the URL
         let task = URLSession.shared.dataTask(with: url!) { data, response, error in
             // this closure is fired when the response is received
@@ -40,7 +40,7 @@ class TriviaQuestionService {
             catch {
                 // handle error gracefully
                 print("Error decoding JSON: \(error)")
-            }// at this point, `data` contains data received from the response
+            } // at this point, `data` contains data received from the response
         }
         task.resume()  // resume the task and fire the request
     }
