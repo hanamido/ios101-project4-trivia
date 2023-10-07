@@ -21,7 +21,6 @@ class TriviaViewController: UIViewController {
   private var questions = [CurrentTriviaQuestion]()
   private var currQuestionIndex = 0
   private var numCorrectQuestions = 0
-  private var isBooleanAnswer = false
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -89,9 +88,12 @@ class TriviaViewController: UIViewController {
                                             message: "Final score: \(numCorrectQuestions)/\(questions.count)",
                                             preferredStyle: .alert)
     let resetAction = UIAlertAction(title: "Restart", style: .default) { [unowned self] _ in
-      currQuestionIndex = 0
-      numCorrectQuestions = 0
-        updateQuestion(withQuestionIndex: currQuestionIndex)
+        TriviaQuestionService.fetchTriviaQuestions(completion: { (triviaQuestions) in
+            self.questions = triviaQuestions
+            self.currQuestionIndex = 0
+            self.numCorrectQuestions = 0
+            self.updateQuestion(withQuestionIndex: self.currQuestionIndex)
+        })
     }
     alertController.addAction(resetAction)
     present(alertController, animated: true, completion: nil)
