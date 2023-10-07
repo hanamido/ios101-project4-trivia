@@ -67,13 +67,18 @@ class TriviaViewController: UIViewController {
   }
 
   private func updateToNextQuestion(answer: String) {
-    if isCorrectAnswer(answer) {
+      let isCorrectBool: Bool = isCorrectAnswer(answer)
+    if isCorrectBool {
       numCorrectQuestions += 1
     }
     currQuestionIndex += 1
+      print(currQuestionIndex)
       guard currQuestionIndex < questions.count else {
         showFinalScore()
         return
+      }
+      if isCorrectBool {
+          showFeedbackAlert(with: isCorrectBool)
       }
       let question = questions[currQuestionIndex]
       updateQuestion(withQuestionIndex: currQuestionIndex)
@@ -82,6 +87,29 @@ class TriviaViewController: UIViewController {
   private func isCorrectAnswer(_ answer: String) -> Bool {
     return answer == questions[currQuestionIndex].correctAnswer
   }
+    
+    private func showFeedbackAlert(with isCorrectBool: Bool) -> Void {
+        if isCorrectBool {
+            let correctController = UIAlertController(title: "Correct: ",
+                                                    message: "You currently have: \(numCorrectQuestions)/\(questions.count) correct",
+                                                    preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "ok",
+                                         style: .default,
+                                         handler: nil)
+            correctController.addAction(okAction)
+            present(correctController, animated: true, completion: nil)
+        } else {
+            let incorrectController = UIAlertController(title: "Incorrect: ",
+                                                    message: "You currently have: \(numCorrectQuestions)/\(questions.count) correct",
+                                                    preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "ok",
+                                         style: .default,
+                                         handler: nil)
+            incorrectController.addAction(okAction)
+            present(incorrectController, animated: true, completion: nil)
+        }
+
+    }
   
   private func showFinalScore() {
     let alertController = UIAlertController(title: "Game over!",
