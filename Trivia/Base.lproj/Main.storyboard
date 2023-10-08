@@ -1,23 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6YO-BY-24o">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Categories View Controller-->
+        <scene sceneID="9JT-Cn-xaM">
+            <objects>
+                <viewController title="Categories View Controller" id="6YO-BY-24o" customClass="CategoriesViewController" customModule="Trivia" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FiE-8N-4ek">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FBd-bx-Os9">
+                                <rect key="frame" x="0.0" y="345" width="393" height="162"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="162" id="Umd-S0-u9B"/>
+                                    <constraint firstAttribute="width" constant="393" id="rD4-kK-nen"/>
+                                </constraints>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose a category then click 'Next', or click the 'Next' button below to play with random categories!" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S5i-hj-Jcy">
+                                <rect key="frame" x="44" y="273" width="757" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1xQ-CN-lhb">
+                                <rect key="frame" x="167" y="615" width="60" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Next"/>
+                                <connections>
+                                    <action selector="nextButtonTapped:" destination="6YO-BY-24o" eventType="touchUpInside" id="AZf-Al-qCs"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="S11-Wz-XqO"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="FBd-bx-Os9" firstAttribute="centerY" secondItem="FiE-8N-4ek" secondAttribute="centerY" id="1tB-Oy-jh1"/>
+                            <constraint firstItem="FBd-bx-Os9" firstAttribute="top" secondItem="S11-Wz-XqO" secondAttribute="top" constant="286" id="4Yn-hO-2Ei"/>
+                            <constraint firstItem="S11-Wz-XqO" firstAttribute="bottom" secondItem="FBd-bx-Os9" secondAttribute="bottom" constant="311" id="Irz-Rk-yQB"/>
+                            <constraint firstItem="FBd-bx-Os9" firstAttribute="leading" secondItem="S11-Wz-XqO" secondAttribute="leading" id="XeJ-I3-K4o"/>
+                            <constraint firstItem="FBd-bx-Os9" firstAttribute="centerX" secondItem="FiE-8N-4ek" secondAttribute="centerX" id="iSc-fs-0b8"/>
+                            <constraint firstItem="FBd-bx-Os9" firstAttribute="trailing" secondItem="S11-Wz-XqO" secondAttribute="trailing" id="jEg-FW-gkY"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="categoriesPickerView" destination="FBd-bx-Os9" id="9Hw-5K-ZBn"/>
+                        <outlet property="categoryInstructionsButton" destination="S5i-hj-Jcy" id="Wr1-5D-qhd"/>
+                        <outlet property="nextButton" destination="1xQ-CN-lhb" id="N6T-XT-4Jl"/>
+                        <segue destination="BYZ-38-t0r" kind="showDetail" identifier="ShowTriviaViewController" id="f5m-PJ-xfe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d8T-Ft-i34" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-710.68702290076328" y="20.422535211267608"/>
+        </scene>
         <!--Trivia View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="TriviaViewController" customModule="Trivia" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h9Z-qS-mLD">
-                                <rect key="frame" x="16" y="139" width="361" height="300"/>
+                                <rect key="frame" x="16" y="80" width="361" height="300"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a question" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y8l-Va-pad">
                                         <rect key="frame" x="16" y="16" width="329" height="268"/>
@@ -36,13 +91,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question: 1/5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cc-UQ-syY">
-                                <rect key="frame" x="123" y="71" width="147" height="30"/>
+                                <rect key="frame" x="123" y="12" width="147" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZY-gR-P4S">
-                                <rect key="frame" x="35" y="451" width="323" height="50"/>
+                                <rect key="frame" x="35" y="392" width="323" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="0jy-mO-1oX"/>
                                 </constraints>
@@ -54,7 +109,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kvu-mi-Fc4">
-                                <rect key="frame" x="35" y="513" width="323" height="50"/>
+                                <rect key="frame" x="35" y="454" width="323" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="KbL-As-mAw"/>
                                 </constraints>
@@ -66,7 +121,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQs-Qf-aRm">
-                                <rect key="frame" x="35" y="637" width="323" height="50"/>
+                                <rect key="frame" x="35" y="578" width="323" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Kcm-D5-WII"/>
                                 </constraints>
@@ -78,7 +133,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIy-Sz-Zms">
-                                <rect key="frame" x="35" y="575" width="323" height="50"/>
+                                <rect key="frame" x="35" y="516" width="323" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="gzp-gM-O4e"/>
                                 </constraints>
@@ -90,7 +145,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Music &amp; Entertainment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUd-ko-6Y3">
-                                <rect key="frame" x="94" y="107" width="205" height="24"/>
+                                <rect key="frame" x="94" y="48" width="205" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -120,6 +175,7 @@
                             <constraint firstItem="sZY-gR-P4S" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="35" id="tDb-Hi-wsb"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="NzX-C6-M3b"/>
                     <connections>
                         <outlet property="answerButton0" destination="sZY-gR-P4S" id="ka8-N5-FaQ"/>
                         <outlet property="answerButton1" destination="kvu-mi-Fc4" id="Gro-FD-aYZ"/>
@@ -138,7 +194,7 @@
     </scenes>
     <resources>
         <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

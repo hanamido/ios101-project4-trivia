@@ -17,26 +17,44 @@ class TriviaViewController: UIViewController {
   @IBOutlet weak var answerButton1: UIButton!
   @IBOutlet weak var answerButton2: UIButton!
   @IBOutlet weak var answerButton3: UIButton!
-  
+    
   private var questions = [CurrentTriviaQuestion]()
   private var currQuestionIndex = 0
   private var numCorrectQuestions = 0
+    var categoryId: Int? = 0
   
   override func viewDidLoad() {
     super.viewDidLoad()
     addGradient()
     questionContainerView.layer.cornerRadius = 8.0
     // TODO: FETCH TRIVIA QUESTIONS HERE
-      TriviaQuestionService.fetchTriviaQuestions(completion: { (triviaQuestions) in
-          self.questions = triviaQuestions
-          self.updateQuestion(withQuestionIndex: self.currQuestionIndex)
-      })
+      if categoryId == 0 {
+          TriviaQuestionService.fetchTriviaQuestions(completion: { (triviaQuestions) in
+              print(self.categoryId ?? 0)
+              self.questions = triviaQuestions
+              self.updateQuestion(withQuestionIndex: self.currQuestionIndex)
+          })
+      }
+      else {
+          TriviaQuestionService.fetchTriviaQuestionByCategory(categoryId: categoryId ?? 0, completion: { (triviaQuestions) in
+              print(self.categoryId ?? 0)
+              self.questions = triviaQuestions
+              self.updateQuestion(withQuestionIndex: self.currQuestionIndex)
+          })
+      }
   }
+    
+    @IBAction func goToCategoriesButtonTapped(_ sender: UIButton) {
+        if let categoriesViewController = storyboard?.instantiateViewController(withIdentifier: "CategoriesViewController") {
+            present(categoriesViewController, animated: true, completion: nil)
+        }
+    }
   
     private func updateQuestion(withQuestionIndex questionIndex: Int) {
     currentQuestionNumberLabel.text = "Question: \(questionIndex + 1)/\(questions.count)"
       let question = questions[questionIndex]
-      questionLabel.text = question.question
+        let questionText = String(htmlEncodedString: question.question)
+      questionLabel.text = questionText
       categoryLabel.text = question.category
     let answers = ([question.correctAnswer] + question.incorrectAnswers).shuffled()
         if question.type == "boolean" {
@@ -49,18 +67,22 @@ class TriviaViewController: UIViewController {
         }
         else {
             if answers.count > 0 {
-                answerButton0.setTitle(answers[0], for: .normal)
+                let answer0Text = String(htmlEncodedString: answers[0])
+                answerButton0.setTitle(answer0Text, for: .normal)
             }
             if answers.count > 1 {
-                answerButton1.setTitle(answers[1], for: .normal)
+                let answer1Text = String(htmlEncodedString: answers[1])
+                answerButton1.setTitle(answer1Text, for: .normal)
                 answerButton1.isHidden = false
             }
             if answers.count > 2 {
-                answerButton2.setTitle(answers[2], for: .normal)
+                let answer2Text = String(htmlEncodedString: answers[2])
+                answerButton2.setTitle(answer2Text, for: .normal)
                 answerButton2.isHidden = false
             }
             if answers.count > 3 {
-                answerButton3.setTitle(answers[3], for: .normal)
+                let answer3Text = String(htmlEncodedString: answers[3])
+                answerButton3.setTitle(answer3Text, for: .normal)
                 answerButton3.isHidden = false
             }
         }
@@ -77,10 +99,7 @@ class TriviaViewController: UIViewController {
         showFinalScore()
         return
       }
-      if isCorrectBool {
-          showFeedbackAlert(with: isCorrectBool)
-      }
-      let question = questions[currQuestionIndex]
+    showFeedbackAlert(with: isCorrectBool)
       updateQuestion(withQuestionIndex: currQuestionIndex)
   }
 
