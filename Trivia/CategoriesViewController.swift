@@ -41,11 +41,6 @@ class CategoriesViewController: UIViewController, UIPickerViewDelegate, UIPicker
 //        navigationController?.pushViewController(viewControllerToPush, animated: true)
     }
     
-    
-    
-    @IBAction func categoryPickerButton(_ sender: UIButton) {
-    }
-    
     @IBOutlet weak var categoriesPickerView: UIPickerView!
     @IBOutlet weak var categoryPickerViewHorizontalConstraint: NSLayoutConstraint!
     @IBOutlet weak var categoryPickerViewVerticalConstraint: NSLayoutConstraint!
@@ -61,6 +56,7 @@ class CategoriesViewController: UIViewController, UIPickerViewDelegate, UIPicker
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addGradient()
         categoriesPickerView.delegate = self
         categoriesPickerView.dataSource = self
         categoriesPickerView.isHidden = false
@@ -68,7 +64,7 @@ class CategoriesViewController: UIViewController, UIPickerViewDelegate, UIPicker
         categoryInstructionsButton.textAlignment = .center
         let categoryButtonWidth: CGFloat = 280
         let xPosition = (view.frame.width - categoryButtonWidth) / 2
-        categoryInstructionsButton.frame = CGRect(x: xPosition, y: 260, width: 280, height: 100)
+        categoryInstructionsButton.frame = CGRect(x: xPosition, y: 250, width: 280, height: 100)
         
         // Fetch the categories available from API
         TriviaCategoriesService.fetchCategories(completion: {(triviaCategories) in
@@ -108,5 +104,15 @@ class CategoriesViewController: UIViewController, UIPickerViewDelegate, UIPicker
             }
         }
         return 0
+    }
+    
+    private func addGradient() {
+      let gradientLayer = CAGradientLayer()
+      gradientLayer.frame = view.bounds
+      gradientLayer.colors = [UIColor(red: 0.54, green: 0.88, blue: 0.99, alpha: 1.00).cgColor,
+                              UIColor(red: 0.51, green: 0.81, blue: 0.97, alpha: 1.00).cgColor]
+      gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
+      gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
+      view.layer.insertSublayer(gradientLayer, at: 0)
     }
 }

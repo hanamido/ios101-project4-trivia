@@ -17,6 +17,7 @@ class TriviaViewController: UIViewController {
   @IBOutlet weak var answerButton1: UIButton!
   @IBOutlet weak var answerButton2: UIButton!
   @IBOutlet weak var answerButton3: UIButton!
+    @IBOutlet weak var selectCategoryButton: UIButton!
     
   private var questions = [CurrentTriviaQuestion]()
   private var currQuestionIndex = 0
@@ -44,10 +45,18 @@ class TriviaViewController: UIViewController {
       }
   }
     
-    @IBAction func goToCategoriesButtonTapped(_ sender: UIButton) {
-        if let categoriesViewController = storyboard?.instantiateViewController(withIdentifier: "CategoriesViewController") {
-            present(categoriesViewController, animated: true, completion: nil)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "ShowCategoriesViewController" {
+            if let destinationVC = segue.destination as? CategoriesViewController {
+                destinationVC.categoryId = self.categoryId ?? 0
+            }
         }
+    }
+    
+    @IBAction func goToCategoriesButtonTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "ShowCategoriesViewController", sender: self)
     }
   
     private func updateQuestion(withQuestionIndex questionIndex: Int) {
