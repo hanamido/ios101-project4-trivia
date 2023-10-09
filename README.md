@@ -31,6 +31,8 @@ The following **additional** features are implemented:
 
 [![IOS101 Project 4 - Trivia (Video Demonstration)](https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DlfXQlzucfBI)](https://www.youtube.com/watch?v=lfXQlzucfBI)
 
+![](https://i.imgur.com/9posLYl.gif)
+
 ## Notes
 
 The only difficulties I had when developing this was figuring out how to connect the API response to the UI, and also how to display a different screen for the categories (as part of the stretch feature). I wasn't sure how to do this on the page without the UI looking cluttered, so I made a new page for the categories. I also struggled a bit with trying to get the quotation marks and other special characters displayed when they are in the quiz question or answers. I figured out a workaround but I'm still trying to figure out how to get it to load faster without displaying the initial values (of 'question' and 'button'). 
