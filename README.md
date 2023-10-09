@@ -31,7 +31,7 @@ The following **additional** features are implemented:
 
 [![IOS101 Project 4 - Trivia (Video Demonstration)](https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DlfXQlzucfBI)](https://www.youtube.com/watch?v=lfXQlzucfBI)
 
-![](https://i.imgur.com/ueDvXqw.gif)
+![](https://i.imgur.com/KzMRxfD.gif)
 
 ## Notes
 
