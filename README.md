@@ -29,7 +29,7 @@ The following **additional** features are implemented:
 
 ## Video Walkthrough
 
-[![IOS101 Project 4 - Trivia (Video Demonstration)](https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D7xNZJOMhCXM)](https://www.youtube.com/watch?v=7xNZJOMhCXM)
+[![IOS101 Project 4 - Trivia (Video Demonstration)](https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DlfXQlzucfBI)](https://www.youtube.com/watch?v=lfXQlzucfBI)
 
 ## Notes
 
