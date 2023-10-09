@@ -20,7 +20,7 @@ The following **required** functionality is completed:
 The following **optional** features are implemented:
 
   
-- [ ] Allow the user to choose a specific category of questions.
+- [x] Allow the user to choose a specific category of questions.
 - [x] Provide the user feedback on whether each question was correct before navigating to the next.
 
 The following **additional** features are implemented:
@@ -39,7 +39,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2023] [Hanami Do]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
