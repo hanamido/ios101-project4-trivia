@@ -35,7 +35,7 @@ Here is a reminder on how to embed Loom videos on GitHub. Feel free to remove th
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+The only difficulties I had when developing this was figuring out how to connect the API response to the UI, and also how to display a different screen for the categories (as part of the stretch feature). I wasn't sure how to do this on the page without the UI looking cluttered, so I made a new page for the categories. I also struggled a bit with getting the categories displayed and connecting the one chosen to the quiz questions, but the Swift documentation really helped. 
 
 ## License
 
