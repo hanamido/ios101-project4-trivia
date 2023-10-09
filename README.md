@@ -4,7 +4,7 @@ Submitted by: **Hanami Do**
 
 **Trivia** is an app that allows users to play Trivia, with questions retrieved from the Open Trivia Database API. Users can see their overall score after submitting all questions, and also see current progress and get immediate feedback after each question. Users can also reset the game with a new set of questions if they choose to do so. 
 
-Time spent: **X** hours spent in total
+Time spent: **10** hours spent in total
 
 ## Required Features
 
